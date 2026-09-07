@@ -16,7 +16,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2023/2024}}}
+\markright{\textbf{\textsc{AIF184001/AIF184002 \textemdash Rencana Kerja Tugas Akhir \textemdash Sem. Ganjil 2025/2026}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\baselinestretch}{1}
@@ -31,11 +31,11 @@
 	\author{\nama \textendash \@npm} 
 	
 	%tulis nama dan NPM anda di sini:
-	\newcommand{\nama}{Lionov}
-	\newcommand{\@npm}{1997730020}
-	\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+	\newcommand{\nama}{Christofer Setiawan}
+	\newcommand{\@npm}{6182301076}
+	\newcommand{\@judultopik}{Pengembangan Fitur Ujian dan Download Assignment Pada SharIF-Judge} % Judul/topik anda
 	\newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-	\newcommand{\tanggal}{01/01/1900}
+	\newcommand{\tanggal}{07/09/2026}
 	
 	% Dokumen hasil template ini harus dicetak bolak-balik !!!!
 	
@@ -57,24 +57,21 @@
 	Dst, dst, dst, \ldots\ldots\ldots 
 	
 	\section{Rumusan Masalah}
-	Tuliskan rumusan dari masalah yang akan anda bahas pada tugas akhir ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan penomoran untuk menuliskan rumusan masalah ini.
+	Rumusan Masalah yang akan dibahas pada tugas akhir adalah sebagai berikut:
 	
 	\section{Tujuan}
 	Tuliskan tujuan dari topik tugas akhir yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan penomoran untuk menuliskan rumusan masalah ini, di mana tiap nomor berkaitan dengan nomor pada rumusan masalah.
 	
 	\section{Deskripsi Perangkat Lunak}
-	Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
-	
 	Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 	\begin{itemize}
-		\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-		\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-		\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-		\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-		\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-		\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-		\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-		\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
+		\item Assignment pada SharIF-Judge memiliki penanda (\textit{flag}) tambahan berupa "Quiz" untuk menandakan \textit{assignment} dipersiapkan sebagai kuis
+		\item Setiap \textit{assignment} pada SharIF-Judge (baik latihan maupun kuis) memilik kolom tambahan untuk memasukan IPv4 subnets yang dipisahkan tanda koma dengan nilai bawaan berupa kosong
+		\item \textit{assignment} hanya dapat di akses oleh alamat IP yang sudah terdaftar \textit{subnet} tersebut, kecuali nilai \textit{subnet} kosong
+		\item Halaman daftar \textit{assignment} menggunakan emoji sebagai penanda jenis \textit{assignment}
+		\item Informasi waktu pengerjaan akan diberikan warna hijau jika \textit{assignment} berada dalam rentang waktu pengerjaan. Jika \textit{assignment} yang sedang aktif adalah quiz maka \textit{assignment} lainnya tidak dapat diakses dan akan diberikan warna merah. Namun jika bertipe latihan \textit{assignment} lainnnya tetap dapat diakses dan diberi warna hitam
+		\item SharIF-Judge dapat memberikan pesan yang jelas ketika pelanggaran aturan akses diluar \textit{subnet} yang terdaftar
+		\item Pengguna dengan \textit{role} dosen dapat mengunduh seluruh \textit{assignment} dalam bentuk yang sudah terkompresi dengan format penamaan \texttt{\{id-assignment\}-\{nama-assignment\}-\{nama-soal\}.zip}
 		
 	\end{itemize}
 	
@@ -97,23 +94,19 @@
 	\section{Rencana Kerja}
 	Rincian capaian yang direncanakan di Tugas Akhir 1 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item Menulis dokumen tugas akhir yaitu bab 1,2,3
 	\end{enumerate}
 	
 	Sedangkan yang akan diselesaikan di Tugas Akhir 2 adalah sebagai berikut:
 	\begin{enumerate}
-		\item
-		\item
-		\item
+		\item Melanjutkan penulisan dokumen tugas akhir yaitu bab 4,5,6
 	\end{enumerate}
 	
 	\vspace{1cm}
 	\centering Bandung, \tanggal\\
 	\vspace{2cm} \nama \\ 
 	\vspace{1cm}
-	
+
 	Menyetujui, \\
 	\ifdefstring{\jumpemb}{2}{
 		\vspace{1.5cm}
@@ -129,6 +122,6 @@
 		\vspace{0.5cm}
 	}{
 		% \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-		\vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+		\vspace{2cm} Nama: Pascal Alfadian Nugroho, S.Kom., M.Comp. \\ Pembimbing Tunggal
 	}
 \end{document}
