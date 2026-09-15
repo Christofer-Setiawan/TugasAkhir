@@ -44,11 +44,11 @@
 	\pagenumbering{arabic}
 	
 	\section{Deskripsi}
-	\textit{Coding} merupakan bagian penting bagi seorang mahasiswa informatika yang kelak menjadi seorang programmer. Cara agar seorang mahasiswa informatika bisa memiliki kemampuan programming yang baik adalah dengan latihan dan mengerjakan tugas yang diberikan oleh dosen. Suatu kode dinilai baik atau buruk berdasarkan keakuratan masukan, keluaran dan seberapa efesien kode dihasilkan. Namun setiap orang memiliki cara berpikir dan implementasi kode yang berbeda sehingga penilaian menjadi cukup sulit karena dosen harus menilai kode setiap mahasiswa secara manual. Website judge ini hadir untuk memudahkan pengecekan kode tersebut. 
+	\textit{Coding} merupakan bagian penting bagi seorang mahasiswa informatika yang kelak menjadi seorang programmer. Cara agar seorang mahasiswa informatika bisa memiliki kemampuan programming yang baik adalah dengan latihan dan mengerjakan tugas yang diberikan oleh dosen. Suatu kode dinilai baik atau buruk berdasarkan keakuratan masukan, keluaran dan seberapa efisien kode dihasilkan. Namun setiap orang memiliki cara berpikir dan implementasi kode yang berbeda sehingga penilaian menjadi cukup sulit karena dosen harus menilai kode setiap mahasiswa secara manual. Website judge ini hadir untuk memudahkan pengecekan kode tersebut. 
     
-    Website \textit{Judge} bekerja dengan memasukkan masukan yang sudah kedalam kode yang sedang diperiksa. Setelah itu hasil keluaran dari kode tersebut akan dibandingkan dengan keluaran yang sudah disiapkan oleh pembuat soal, penilaian kode di dasarkan seberapa akurat keluaran yang di hasilkan. Arsitektur dari website \textit{judge} memakai bahasa pemrograman PHP dan framework codeIgniter lalu untuk basis data memakai \textit{PostgreSQL}. Website \textit{judge} ini dipakai oleh jurusan teknik informatika dari Universitas Katolik Parahyangan untuk memudahkan dalam menilai kode yang sudah dikerjakan oleh para mahasiswa. \textit{Judge} yang digunakan merupakan sharIF-Judge yang sudah dimodifikasi oleh $Stillmen Vallian^1$ yang berasal dari \textit{Judge} milik Mohammad Javad Naderi.
+    Website \textit{Judge} bekerja dengan memasukkan masukan yang sudah ke dalam kode yang sedang diperiksa. Setelah itu hasil keluaran dari kode tersebut akan dibandingkan dengan keluaran yang sudah disiapkan oleh pembuat soal, penilaian kode didasarkan seberapa akurat keluaran yang dihasilkan. Arsitektur dari website \textit{judge} memakai bahasa pemrograman PHP dan framework codeIgniter lalu untuk basis data memakai \textit{PostgreSQL}. Website SharIF-Judge \footnote{https://github.com/ifunpar/SharIF-Judge}ini dipakai oleh jurusan teknik informatika dari Universitas Katolik Parahyangan untuk memudahkan dalam menilai kode yang sudah dikerjakan oleh para mahasiswa. \textit{Judge} yang digunakan merupakan sharIF-Judge yang sudah dimodifikasi oleh Stillmen Vallian \footnote{Stillmen Vallian, “Kustomisasi Sharif Judge untuk kebutuhan Program Studi Teknik Informatika”, 2018} yang berasal dari \textit{Judge} milik Mohammad Javad Naderi\footnote{Nicholas Aditya Halim, “Implementasi Editor Kode pada SharIF Judge”, 2022}.
 
-	Saat ini sharIF-Judge masih memerlukan 2 \textit{instance} terpisah untuk melakukan pengerjaan latihan dan quiz, hal ini dilakukan agar ketika mahasiswa sedang ujian atau quiz tidak bisa melihat kode atau catatan pada website latihan. Namun dua \textit{instance} terpisah ini berdampak pada kurang efesiennya dalam pemeliharaan website dan ketika masa kuis atau ujian mahasiswa harus mengetik ulang secara manual untuk bisa masuk ke website yang di khususkan untuk \textit{quiz}. Selain itu, tidak ada fitur bagi dosen untuk mengunduh semua assignment secara bersamaan sehingga dosen harus mengunduh secara manual.
+	Saat ini sharIF-Judge masih memerlukan 2 \textit{instance} terpisah untuk melakukan pengerjaan latihan dan quiz, hal ini dilakukan agar ketika mahasiswa sedang ujian atau quiz tidak bisa melihat kode atau catatan pada website latihan. Namun dua \textit{instance} terpisah ini berdampak pada kurang efisiennya dalam pemeliharaan website dan ketika masa kuis atau ujian mahasiswa harus mengetik ulang secara manual untuk bisa masuk ke website yang dikhususkan untuk \textit{quiz}. Selain itu, tidak ada fitur bagi dosen untuk mengunduh semua assignment secara bersamaan sehingga dosen harus mengunduh secara manual.
 
 	Pada tugas akhir ini akan menambahkan 2 fitur utama. Fitur pertama adalah pembatasan akses berdasarkan \textit{IPv4} dan penanda \textit{quiz} dalam bentuk \textit{flag}. Fitur ini akan membantu dalam pembatasan lokasi akses jaringan dan penguncian \textit{quiz} dalam satu instance. Lalu akan dikembangkan indikator waktu pengerjaan berbasis visual. Fitur kedua, mengunduh seluruh berkas assignment dalam format zip dengan penamaan \texttt{\{id-assignment\}-\{nama-assignment\}-\{nama-soal\}.zip}, hal ini untuk memudahkan bagi para dosen untuk mengecek jawaban para mahasiswa tanpa harus melihat secara manual.
 		
@@ -66,18 +66,18 @@
 	\begin{enumerate}
      \item Mengimplementasikan pembatasan akses berdasarkan \textit{IPv4} dan penanda \textit{quiz} dalam satu \textit{instance}.
      \item Mengimplementasikan perubahan tampilan antarmuka agar memiliki status visual berupa emoji dan durasi pengerjaan setiap \textit{assignment} diberikan warna sesuai dengan status \textit{assignment}.
-     \item Mengimplementasikan pengunduhan berkas \textit{assignment} yang sudah di kompresi menjadi bentuk zip dan memiliki penamaan \texttt{\{id-assignment\}-\{nama-assignment\}-\{nama-soal\}.zip}.
+     \item Mengimplementasikan pengunduhan berkas \textit{assignment} yang sudah dikompresi menjadi bentuk zip dan memiliki penamaan \texttt{\{id-assignment\}-\{nama-assignment\}-\{nama-soal\}.zip}.
  	\end{enumerate}
 
 	\section{Deskripsi Perangkat Lunak}
 	Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
 	\begin{itemize}
 		\item Assignment pada SharIF-Judge memiliki penanda (\textit{flag}) tambahan berupa "Quiz" untuk menandakan \textit{assignment} dipersiapkan sebagai kuis
-		\item Setiap \textit{assignment} pada SharIF-Judge (baik latihan maupun kuis) memilik kolom tambahan untuk memasukan IPv4 subnets yang dipisahkan tanda koma dengan nilai bawaan berupa kosong
-		\item \textit{assignment} hanya dapat di akses oleh alamat IP yang sudah terdaftar \textit{subnet} tersebut, kecuali nilai \textit{subnet} kosong
+		\item Setiap \textit{assignment} pada SharIF-Judge (baik latihan maupun kuis) memiliki kolom tambahan untuk memasukkan IPv4 subnets yang dipisahkan tanda koma dengan nilai bawaan berupa kosong
+		\item \textit{assignment} hanya dapat diakses oleh alamat IP yang sudah terdaftar \textit{subnet} tersebut, kecuali nilai \textit{subnet} kosong
 		\item Halaman daftar \textit{assignment} menggunakan emoji sebagai penanda jenis \textit{assignment}
-		\item Informasi waktu pengerjaan akan diberikan warna hijau jika \textit{assignment} berada dalam rentang waktu pengerjaan. Jika \textit{assignment} yang sedang aktif adalah quiz maka \textit{assignment} lainnya tidak dapat diakses dan akan diberikan warna merah. Namun jika bertipe latihan \textit{assignment} lainnnya tetap dapat diakses dan diberi warna hitam
-		\item SharIF-Judge dapat memberikan pesan yang jelas ketika pelanggaran aturan akses diluar \textit{subnet} yang terdaftar
+		\item Informasi waktu pengerjaan akan diberikan warna hijau jika \textit{assignment} berada dalam rentang waktu pengerjaan. Jika \textit{assignment} yang sedang aktif adalah quiz maka \textit{assignment} lainnya tidak dapat diakses dan akan diberikan warna merah. Namun jika bertipe latihan \textit{assignment} lainnya tetap dapat diakses dan diberi warna hitam
+		\item SharIF-Judge dapat memberikan pesan yang jelas ketika pelanggaran aturan akses di luar \textit{subnet} yang terdaftar
 		\item Pengguna dengan \textit{role} dosen dapat mengunduh seluruh \textit{assignment} dalam bentuk yang sudah terkompresi dengan format penamaan \texttt{\{id-assignment\}-\{nama-assignment\}-\{nama-soal\}.zip}
 		
 	\end{itemize}
@@ -107,8 +107,8 @@
 	
 	Sedangkan yang akan diselesaikan di Tugas Akhir 2 adalah sebagai berikut:
 	\begin{enumerate}
-		\item Mengimplementasi fitur pembatasan akses.
-		\item Mengimplementasi fitur download \textit{assignment}.
+		\item mengimplementasikan fitur pembatasan akses.
+		\item mengimplementasikan fitur download \textit{assignment}.
 		\item Melakukan pengujian dan eksperimen.
 		\item Melanjutkan penulisan dokumen tugas akhir yaitu bab 4,5,6.
 	\end{enumerate}
