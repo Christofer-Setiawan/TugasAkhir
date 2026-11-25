@@ -3,7 +3,15 @@
 
 \section{Analisis Sistem Kini}
 \label{sec:3:sistemkini}
-SharIF-Judge adalah tempat penilaian kode mahasiswa yang telah dimodifikasi untuk menyesuaikan dengan kebutuhan yang diperlukan oleh jurusan Informatika Universitas Katolik Parahyangan. SharIF-Judge menerapkan arsitektur \textit{Model-View-Controller} (MVC). Berikut merupakan hasil eksplorasi dari situs web SharIF-Judge:
+SharIF-Judge adalah tempat penilaian kode mahasiswa yang telah dimodifikasi untuk menyesuaikan dengan kebutuhan yang diperlukan oleh program studi sarjana informatika Universitas Katolik Parahyangan. Pada SharIF-Judge terdapat 3 \textit{role} utama yaitu, mahasiswa, dosen dan admin setiap \textit{role} memiliki peran dan haknya masing masing pada SharIF-Judge, peran dan hak tersebut dipetakan melalui usecase diagram pada gambar dibawah ini:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Usecase_diagram_seluruh_sistem.png}
+    \caption{usecase analisis SharIF-Judge}
+    \label{fig:usecase_sistem}
+\end{figure}
+
+Pada sisi arsitektur website, SharIF-Judge memakai arsitektur \textit{Model-View-Controller} (MVC). Berdasarkan hasil eksplorasi pada SharIF-Judge didapatkan seluruh \textit{Model-View-Controller} (MVC) sebagai berikut:
 
 \subsection{Model}
 \label{sub:3:1:model}
@@ -194,13 +202,13 @@ Model merupakan kelas-kelas yang digunakan untuk mengelola data dan mengembalika
 		      \item \verb|get_names()| \\
 		            Mendapatkan dan mengembalikan seluruh \textit{display name} pada tabel \textit{users}.
 		      \item \verb|update_profile($user_id)| \\
-		            Memperbaharui nama, email, password, atau role pengguna.
+		            Memperbaharui nama, email, kata sandi, atau role pengguna.
 		      \item \verb|send_password_reset_mail($email)| \\
 		            Mengirimkan \textit{link reset password} ke email pengguna yang dapat dipakai selama 1 jam.
 		      \item \verb|passchange_is_valid($passchange_key)| \\
 					Memeriksa jika \textit{link reset password} masih dapat digunakan oleh pengguna atau tidak, dan akan mengembalikan nilai bertipe \textit{boolean}
 		      \item \verb|reset_password($passchange_key, $newpassword)| \\
-		            Memperbaharui \textit{password} dan melakukan validasi dengan\textit{password change key}.
+		            Memperbaharui kata sandi dan melakukan validasi dengan\textit{password change key}.
 		      \item \verb|get_all_users()| \\
 		            Mendapatkan dan mengembalikan seluruh pengguna pada tabel \verb|users|.
 		      \item \verb|get_user($user_id)| \\
@@ -211,78 +219,118 @@ Model merupakan kelas-kelas yang digunakan untuk mengelola data dan mengembalika
 \end{itemize}
 
 \subsection{View}
-\textit{View} adalah yang menjadi tampilan dan yang berinteraksi langsung dengan pengguna dan sisten. Pada SharIF-Judge seluruh file \textit{view} disimpan pada direktori \verb|application/views|, didalam direktori tersebut memiliki 3 sub direktori terpisah yaitu \textit{pages, errors, template}.
+\textit{View} ada bagian dari arsitektur MVC yang bertanggung jawab dalam mengelola tampilan dan yang berinteraksi langsung dengan antara pengguna dengan sistem. Pada SharIF-Judge seluruh file tampilan antaramuka pengguna \textit{(view)} disimpan dalam satu direktori khusus yaitu \verb|application/views| dan didalam direktori tersebut juga ada 3 sub direktori terpisah yaitu \textit{pages, errors, template}.
 
 \begin{itemize}
 
 	\item \verb|pages| \\
-	      Pada direktori \textit{pages}, terdapat tampilan halaman utama. Pada direktori \textit{pages} terdapat 2 sub direktori lainnya.
+	      Pada direktori \textit{pages}, terdapat tampilan halaman utama. Pada direktori \textit{pages} terdapat 2 sub direktori lainnya yaitu admin dan \textit{authentication}.
 
 	      \begin{itemize}
 		      \item \verb|pages/admin| \\
-		            Direktori \textit{admin} yang berisikan khusus untuk \textit{role admin}. Berikut merupakan \textit{views} pada direktori \textit{admin}:
+		            Direktori \textit{admin} adalah direktori yang di khususkan bagi \textit{role} admin. Berikut adalah isi dari direktori \verb|pages/admin|:
 
 		            \begin{itemize}
-			            \item \verb|add_assignment.twig|
-			            \item \verb|add_notification.twig|
-			            \item \verb|add_user.twig|
-			            \item \verb|add_user_result.twig|
-			            \item \verb|delete_assignment.twig|
-			            \item \verb|edit_problem_html.twig|
-			            \item \verb|edit_problem_md.twig|
-			            \item \verb|edit_problem_plain.twig|
-			            \item \verb|install.twig|
-			            \item \verb|logs.twig|
-			            \item \verb|moss.twig|
-			            \item \verb|queue.twig|
-			            \item \verb|rejudge.twig|
-			            \item \verb|settings.twig|
-			            \item \verb|users.twig|
+			            \item \verb|add_assignment.twig| \\
+                        Kode ini merupakan tampilan untuk menambahkan \textit{assignments} untuk page admin.
+			            \item \verb|add_notification.twig| \\
+                        Kode ini merupakan tampilan untuk admin menambah dan mengedit notifikasi
+			            \item \verb|add_user.twig|\\
+                        Kode ini merupakan tampilan untuk admin dalam menambahkan user kedalam website.
+			            \item \verb|add_user_result.twig|\\
+                        Kode ini merupakan tampilan untuk memberikan konfirmasi ketika sudah berhasil menambahkan user kedalam website.
+			            \item \verb|delete_assignment.twig|\\
+                        Kode ini merupakan tampilan untuk menghapus \textit{assignment} pada website.
+			            \item \verb|edit_problem_html.twig|\\
+                        Kode ini merupakan tampilan untuk melakukan \textit{edit problem} pada website.
+			            \item \verb|edit_problem_md.twig|\\
+                        Kode ini merupakan tampilan untuk melakukan perubahan deskripsi soal pemrograman dalam bentuk \textit{Markdown} (MD) dan diberikan pula \textit{preview} deskprinya.
+			            \item \verb|edit_problem_plain.twig|\\
+                        Kode ini sama seperti \verb|edit_problem_md.twig| hanya saja dalam bentuk format teks biasa (\textit{plain text}).
+			            \item \verb|install.twig|\\
+                        Kode ini merupakan tampilan pada saat awal mula melakukan isntalasi sisam SharIF-Judge.
+			            \item \verb|logs.twig|\\
+                        Kode ini merupakan tampilan untuk catatan aktivitas sistem, seperti riwayat login perubahan data untuk melakukan audit bagi admin.
+			            \item \verb|moss.twig|\\
+                        Kode ini merupakan tampilan untuk melihat dan menjalankan kemiripan kode memakai MOSS (\textit{Measure of Software Similarity}).
+			            \item \verb|queue.twig|\\
+                        Kode ini merupakan tampilan untuk melihat antrian dari \textit{submissions} yang sedang dieksekusi oleh penilai ataupun sedang menunggu.
+			            \item \verb|rejudge.twig|\\
+                        Kode ini adalah tampilan untuk melakukan penilaian ulang pada beberapa \textit{submissions} atau pada seluruh \textit{submissions}.
+			            \item \verb|settings.twig|\\
+                        Kode ini merupakan tamplan untuk melakukan pengaturan secara global seperti zona waktu, batas ukuran unggahan, konfigurasi email, tampilan \textit{scoreboard} dan pengaturan untuk keamanan atau registrasi
+			            \item \verb|users.twig|\\
+                        Kode ini merupakan tampilan untuk melihat daftar seluruh pengguna yang ada beserta tombol untuk mengeubah \textit{role}, mengedit profile atau menghapus pengguna
 		            \end{itemize}
 
 		      \item \verb|pages/authentication| \\
-		            Direktori \textit{authentication} berisi halaman khusus untuk bagian \textit{authentication}. Berikut merupakan \textit{views} pada direktori \verb|admin|:
-
+                    Direktori ini berisi beberapa halaman khusus yang bertanggung jawab dalam bagian \textit{authentication}. Berikut adalah isi dari direktori \verb|pages/authentication|:
 		            \begin{itemize}
-			            \item \verb|login.twig|
-			            \item \verb|lost.twig|
-			            \item \verb|register.twig|
-			            \item \verb|register_success.twig|
-			            \item \verb|reset_password.twig|
+			            \item \verb|login.twig| \\
+                        Kode ini merupakan tampilan untuk masuk yang berisi username dan kata sandi.
+			            \item \verb|lost.twig| \\
+                        Kode ini merupakan tampilan ketika pengguna lupa kata sandi dan dimana pengguna memasukkan email untuk meminta tautan untuk mengatur ulang kata sandi.
+			            \item \verb|register.twig| \\
+                        Kode ini merupakan tampilan untuk pendaftaran secara mandiri bagi pengguna atau mahasiswa baru
+			            \item \verb|register_success.twig| \\
+                        Kode ini merupakan pesan konfirmasi ketika prosess pendaftaran akun baru berhasil dilakukan.
+			            \item \verb|reset_password.twig| \\
+                        Kode ini merupakan tampilan tempat pengguna memasukan kata sandi baru setelah melakukan pengaturan ulang kata sandi.
 		            \end{itemize}
 
-		      \item \verb|assignments.twig|
-		      \item \verb|dashboard.twig|
-		      \item \verb|halloffame.twig|
-		      \item \verb|notification.twig|
-		      \item \verb|problems.twig|
-		      \item \verb|profile.twig|
-		      \item \verb|scoreboard.twig|
-		      \item \verb|scoreboard_tabel.twig|
-		      \item \verb|submissions.twig|
-		      \item \verb|submit.twig|
+            Dibawah ini merupakan beberapa file yang langsung terdapat pada \verb|pages| dan tidak disimpan pada satu direktoro khusus tersendiri.
+            
+		      \item \verb|assignments.twig|\\
+            Kode ini merupakan tampilan daftar seluruh \textit{assingments} yang tersedia dengan status, tenggat waktu dan jumlah soalnya
+		      \item \verb|dashboard.twig|\\
+            Kode ini merupakakan tampilan utama setelah berhasil login dan menampilkan ringkasan tugas yang sedang aktif, kalender dan pengumuman paling baru.
+		      \item \verb|halloffame.twig| \\
+            Kode ini merupakan tampilan peringkat pengguna yang aktif berdasarkan jumlah poin yang dimiliki oleh pengguna.
+		      \item \verb|notification.twig| \\
+            Kode ini merupakan tampilan daftar pengumuman.
+		      \item \verb|problems.twig|\\
+            Kode ini merupakan tampilan untuk membaca deskripsi soal dan jenis file berkas yang mendukung untuk bisa di unggah pengguna.
+		      \item \verb|profile.twig| \\
+            Kode ini merupakan tampilan untuk melihat profile probadi milik pengguna.
+		      \item \verb|scoreboard.twig| \\
+            Kode ini merupakan tampilan untuk melihat\textit{scoreboard} untuk meluhat peringkat nilai seluruh pengguna pada suatu \textit{assignments}.
+		      \item \verb|scoreboard_tabel.twig| \\
+            Kode ini merupakan tampilan nilai persoal, waktu dan total skor yang dimiliki pada \verb|scoreboard.twig|.
+		      \item \verb|submissions.twig|\\
+            Kode ini merupakan tampilan untuk melihat riwayat kode yang sudah diunggah beserta penilaian yang didapatkan dan melihat log atau kode hasil kompilasi.
+		      \item \verb|submit.twig| \\
+            Kode ini merupakan tampilan untuk melakukan pengumpulan jawaban baik dalam bentuk mengunggah file ataupun memasukkan kode langsung di editor.
 	      \end{itemize}
 
 
 	\item \verb|errors| \\
-	      	Direktori \textit{errors}, berisi tampilan halaman \textit{error} jika terjadi error. Berikut merupakan \textit{views} pada direktori \verb|errors|:
+            Direktori ini berisi tampilan ketika terjadi \textit{error} pada website. Berikut merupakan isi dari direktori \verb|errors|:
 
 	      \begin{itemize}
-		      \item \verb|error_404|
-		      \item \verb|error_db|
-		      \item \verb|error_exception|
-		      \item \verb|error_general|
-		      \item \verb|error_php|
+		      \item \verb|error_404| \\
+            Kode ini merupakan tampilan yang akan tampil ke pengguna ketika pengguna mencoba mengakses alamat yang tidak ada didalam sistem.
+		      \item \verb|error_db| \\
+            Kode ini merupakan tampilan halam ketika terjadi kegagalan dalam bagian database seperti gagal terhubung kedatabase atau data tidak ditemukan pada database.
+		      \item \verb|error_exception| \\
+            Kode ini menampilkan peringkatan ketika terjadi kesalahan.
+		      \item \verb|error_general| \\
+            Kode menampilkan kesalahan pada sistem atau \textit{framework} yang tidak masuk kedalam error 404 ataupun error database.
+		      \item \verb|error_php| \\
+            Kode ini berfungsi untuk menampilkan kotak peringatan berwarna merah ketika terjadi kesalahan sintaks atau \textit{runtime}.
 	      \end{itemize}
 
 	\item \verb|templates| \\
 	    	Direktori \textit{templates}, berisi tampilan yang akan digunakan secara berulang seperti \textit{header}, \textit{sidebar}, dan \textit{base}. Berikut merupakan \textit{views} pada \verb|templates|:
 
 	      \begin{itemize}
-		      \item \verb|base.twig|
-		      \item \verb|side_bar.twig|
-		      \item \verb|simple_header.twig|
-		      \item \verb|top_bar.twig|
+		      \item \verb|base.twig| \\
+            kode ini merupakan tempat utama yang dipakai hampir oleh seluruh halaman setelah pengguna berhasil login.
+		      \item \verb|side_bar.twig| \\
+            Kode ini merupakan \textit{sidebar} yang akan dimasukan ke kerangka utama (\verb|base.twig|) dan akan selalu konsisten pada sisi kiri layar.
+		      \item \verb|simple_header.twig| \\
+            Kode ini adalah \textit{header} yang digunakan untuk halaman sebelum pengguna masuk kedalam sistem seperti, \textit{login, register}.
+		      \item \verb|top_bar.twig| \\
+            Kode ini merupakan bagian paling atas layar yang berfungsi sebagai navigasi utama untuk pengguna pada setiap halaman SharIF-Judge
 	      \end{itemize}
 
 
@@ -292,7 +340,6 @@ Berikut merupakan file \textit{controller} dan penjelasan fungsinya pada SharIF 
 \begin{itemize}
 	\item \verb|Assignments.php| \\
 	      Berikut fungsi dengan penjelasannya pada \textit{controller} \verb|Assignments.php|:
-
 
 	      \begin{itemize}
 		      \item \verb|select()| \\
@@ -340,10 +387,6 @@ Berikut merupakan file \textit{controller} dan penjelasan fungsinya pada SharIF 
 
 		      \item \verb|index()| \\
 		            Mendapatkan data dari \verb|Hof_model| dan mengembalikan \textit{view} \verb|halloffame.twig|. Gambar \ref{fig:3:1:1:hof} menunjukkan hasil halaman Hall of Fame yang dapat diakses oleh semua \textit{role}.
-
-		           
-
-
 	      \end{itemize}
 
 	\item \verb|Install.php| \\
@@ -356,7 +399,7 @@ Berikut merupakan file \textit{controller} dan penjelasan fungsinya pada SharIF 
 
 	      \begin{itemize}
 		      \item \verb|index()| \\
-		            Mengembalikan \textit{view} \verb|login.twig| dan memeriksa username dan password pada \textit{form} saat di kirim. 
+		            Mengembalikan \textit{view} \verb|login.twig| dan memeriksa username dan kata sandi pada \textit{form} saat di kirim. 
 
 		            
 		      \item \verb|_registration_code($code)| \\
@@ -425,7 +468,7 @@ Berikut merupakan file \textit{controller} dan penjelasan fungsinya pada SharIF 
 		      \item \verb|_password_check($str)| \\
 		            Melakukan validasi \textit{input password}.
 		      \item \verb|_password_again_check($str)| \\
-		            Melakukan validasi \textit{input} tulisan pengulangan \textit{password}.
+		            Melakukan validasi \textit{input} tulisan pengulangan kata sandi.
 		      \item \verb|_email_check($str)| \\
 		            Melakukan validasi ketersediaan email pada \textit{database}.
 		      \item \verb|_role_check($str)| \\
@@ -587,7 +630,7 @@ Berdasarkan hasil diskusi dan analisis dengan calon pengguna, terdapat beberapa 
     
     \item \textbf{SRS009:} Fitur ``\textit{download all assignments}'' harus dapat diakses oleh pengguna dengan peran (\textit{role}) \textit{Teacher}.
     
-    \item \textbf{SRS010:} Fitur ``\textit{download all assignments by problem}'' mengumpulkan seluruh berkas \textit{.zip} hasil unduhan dari fungsi ``\textit{Download Final Submissions (by problem)}''.
+    \item \textbf{SRS010:} Fitur ``\textit{download all assignments}'' mengumpulkan seluruh berkas \textit{.zip} hasil unduhan dari fungsi ``\textit{Download Final Submissions (by problem)}''.
     
     \item \textbf{SRS011:} Fitur \textit{download assignment} menghasilkan berkas dengan format penamaan \textit{\{id-assignment\}-\{nama-assignment\}-\{nama-problem\}.zip}.
 \end{itemize}   
@@ -622,7 +665,7 @@ Pada pembuatan beberapa fitur baru pada SharIF-Judge diperlukan penambahan dan m
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Usecase_Diagram.png}
+    \includegraphics[width=0.8\textwidth]{Usecase_sistem_usulan.png}
     \caption{usecase analisis sistem usulan}
     \label{fig:usecase_usulan}
 \end{figure}
